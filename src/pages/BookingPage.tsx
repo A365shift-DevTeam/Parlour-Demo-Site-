@@ -243,7 +243,7 @@ export default function BookingPage() {
             {step === 2 && (
               <StepShell
                 title="Choose your salon"
-                description="Select the Aurelia branch that works best for your day."
+                description="Select the GV Studio branch that works best for your day."
               >
                 <div className="grid gap-3">
                   {branches.map((branch) => (
@@ -617,7 +617,7 @@ export default function BookingPage() {
                           const start = `${confirmation.date.replace(/-/g, "")}T${confirmation.time.includes("PM") ? "110000" : "050000"}`;
                           downloadFile(
                             `${confirmation.bookingNumber}.ics`,
-                            `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${start}\nSUMMARY:Aurelia Beauty Appointment\nLOCATION:${selectedBranch?.address ?? ""}\nDESCRIPTION:${selectedServices.map((service) => service.name).join(", ")}\nEND:VEVENT\nEND:VCALENDAR`,
+                            `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${start}\nSUMMARY:GV Studio Beauty Appointment\nLOCATION:${selectedBranch?.address ?? ""}\nDESCRIPTION:${selectedServices.map((service) => service.name).join(", ")}\nEND:VEVENT\nEND:VCALENDAR`,
                             "text/calendar",
                           );
                         }}
@@ -630,7 +630,7 @@ export default function BookingPage() {
                         onClick={() =>
                           downloadFile(
                             `${confirmation.bookingNumber}.txt`,
-                            `Aurelia Booking ${confirmation.bookingNumber}\n${selectedServices.map((service) => service.name).join("\n")}\n${confirmation.date} ${confirmation.time}\n${selectedBranch?.name}\nEstimated total: ${formatPrice(confirmation.total)}`,
+                            `GV Studio Booking ${confirmation.bookingNumber}\n${selectedServices.map((service) => service.name).join("\n")}\n${confirmation.date} ${confirmation.time}\n${selectedBranch?.name}\nEstimated total: ${formatPrice(confirmation.total)}`,
                             "text/plain",
                           )
                         }
@@ -639,7 +639,7 @@ export default function BookingPage() {
                         Download Summary
                       </Button>
                       <a
-                        href={`https://wa.me/?text=${encodeURIComponent(`Aurelia booking ${confirmation.bookingNumber} confirmed for ${confirmation.date} at ${confirmation.time}.`)}`}
+                        href={`https://wa.me/?text=${encodeURIComponent(`GV Studio booking ${confirmation.bookingNumber} confirmed for ${confirmation.date} at ${confirmation.time}.`)}`}
                         target="_blank"
                         rel="noreferrer"
                         className={buttonStyles.secondary}

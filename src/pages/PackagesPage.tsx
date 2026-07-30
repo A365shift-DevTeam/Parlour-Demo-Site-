@@ -123,12 +123,12 @@ export default function PackagesPage() {
           <div className="grid gap-4 sm:grid-cols-2">
             {[
               {
-                name: "Aurelia Essential",
+                name: "GV Studio Essential",
                 price: 3999,
                 features: ["1 hair or grooming service", "1 express skin ritual", "Priority weekday booking"],
               },
               {
-                name: "Aurelia Signature",
+                name: "GV Studio Signature",
                 price: 6999,
                 features: ["2 core beauty services", "1 premium skin ritual", "10% product benefit"],
               },

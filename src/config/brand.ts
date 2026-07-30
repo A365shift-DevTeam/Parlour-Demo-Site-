@@ -1,5 +1,5 @@
 export const brand = {
-  name: "Aurelia",
+  name: "GV Studio",
   descriptor: "Salon & Virtual Beauty Studio",
   logoPath: "/",
   colors: {
@@ -8,7 +8,7 @@ export const brand = {
     accent: "#B58D52",
   },
   phone: "+91 98765 43210",
-  email: "hello@aureliastudio.in",
+  email: "hello@gvstudio.in",
   address: "18, Lavelle Road, Bengaluru, Karnataka 560001",
   social: {
     instagram: "https://instagram.com",

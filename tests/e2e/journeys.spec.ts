@@ -26,7 +26,7 @@ test("complete booking journey reaches confirmation", async ({ page }) => {
   await expect(page).toHaveURL(/\/booking$/);
   await page.getByRole("button", { name: "Choose Branch" }).click();
   await page
-    .getByRole("button", { name: /Aurelia Lavelle Road/ })
+    .getByRole("button", { name: /GV Studio Lavelle Road/ })
     .click();
   await page.getByRole("button", { name: "Choose Specialist" }).click();
   await page
