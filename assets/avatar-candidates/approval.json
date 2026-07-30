@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-07-29T08:57:20.581843+00:00",
+  "model": "Qwen/Qwen-Image-Edit-2511",
+  "approvals": [
+    {
+      "style": "natural-layers",
+      "status": "pending-free-credit",
+      "model": "Qwen/Qwen-Image-Edit-2511",
+      "reason": "No Qwen candidate is available yet."
+    },
+    {
+      "style": "soft-curls",
+      "status": "pending-free-credit",
+      "model": "Qwen/Qwen-Image-Edit-2511",
+      "reason": "No Qwen candidate is available yet."
+    },
+    {
+      "style": "sleek-bob",
+      "status": "approved",
+      "model": "Qwen/Qwen-Image-Edit-2511",
+      "source": "qwen-sleek-bob.png",
+      "faceDifference": 0.0559,
+      "output": "public/images/avatars/human-sleek-bob.webp",
+      "skinToneMethod": "identity-preserving deterministic YCbCr transform"
+    },
+    {
+      "style": "bridal-bun",
+      "status": "pending-free-credit",
+      "model": "Qwen/Qwen-Image-Edit-2511",
+      "reason": "No Qwen candidate is available yet."
+    },
+    {
+      "style": "textured-crop",
+      "status": "pending-free-credit",
+      "model": "Qwen/Qwen-Image-Edit-2511",
+      "reason": "No Qwen candidate is available yet."
+    }
+  ]
+}
