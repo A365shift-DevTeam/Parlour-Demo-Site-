@@ -454,8 +454,7 @@ function AIRecommendationPanel({
             : style === "Natural"
               ? "Bare"
               : "Natural Glow",
-      accessory:
-        occasion === "Bridal" ? "Bridal Gold" : style === "Statement" ? "Pearl Pins" : "None",
+      accessory: style === "Statement" ? "Pearl Pins" : "None",
       facialHair: appearance.facialHair,
     }),
     [appearance.facialHair, appearance.hairColor, occasion, style],
@@ -708,8 +707,8 @@ export default function StudioPage() {
   const compareLooks = savedLooks.filter((look) => compareIds.includes(look.id));
 
   return (
-    <div className="min-h-[calc(100dvh-76px)] bg-[#eee7e2]">
-      <div className="border-b border-charcoal/8 bg-canvas px-4 py-3 sm:px-6">
+    <div className="flex min-h-[calc(100dvh-76px)] flex-col bg-[#eee7e2] lg:h-[calc(100dvh-76px)] lg:overflow-hidden">
+      <div className="shrink-0 border-b border-charcoal/8 bg-canvas px-4 py-3 sm:px-6">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-rose-600">
@@ -734,8 +733,8 @@ export default function StudioPage() {
         </div>
       </div>
 
-      <div className="mx-auto grid w-full min-w-0 max-w-[1600px] grid-cols-1 lg:h-[calc(100dvh-148px)] lg:grid-cols-[270px_minmax(360px,1fr)_350px]">
-        <aside className="no-scrollbar order-2 w-full min-w-0 max-w-full border-b border-charcoal/8 bg-canvas p-4 lg:order-none lg:overflow-y-auto lg:border-b-0 lg:border-r">
+      <div className="mx-auto grid w-full min-h-0 min-w-0 max-w-[1600px] flex-1 grid-cols-1 lg:grid-cols-[270px_minmax(320px,1fr)_350px] lg:overflow-hidden">
+        <aside className="no-scrollbar order-2 w-full min-h-0 min-w-0 max-w-full border-b border-charcoal/8 bg-canvas p-4 lg:order-none lg:overflow-y-auto lg:border-b-0 lg:border-r">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="font-display text-2xl font-semibold">Shape the avatar</h2>
             <Button variant="ghost" className="size-10 px-0" onClick={clearLook} aria-label="Reset avatar and selected services">
@@ -770,9 +769,9 @@ export default function StudioPage() {
           </div>
         </aside>
 
-        <section className="relative order-1 flex min-h-[680px] w-full min-w-0 max-w-full flex-col bg-gradient-to-b from-[#e9ddda] to-[#d5c5c3] p-4 sm:p-6 lg:order-none lg:min-h-0 lg:overflow-hidden">
+        <section className="relative order-1 flex min-h-[min(78dvh,720px)] w-full min-w-0 max-w-full flex-col bg-gradient-to-b from-[#e9ddda] to-[#d5c5c3] p-4 sm:p-5 lg:order-none lg:min-h-0 lg:overflow-hidden">
           <div className="absolute inset-0 editorial-grid opacity-40" />
-          <div className="relative flex items-center justify-between gap-4">
+          <div className="relative flex shrink-0 items-center justify-between gap-4">
             <div>
               <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-ink/50">Photographic look preview</div>
               <div className="mt-1 text-sm font-semibold text-charcoal" aria-live="polite">
@@ -785,34 +784,39 @@ export default function StudioPage() {
             </Pill>
           </div>
 
-          <div className="relative mx-auto flex w-full max-w-xl flex-1 items-center justify-center py-5">
-            <CommonAvatar
-              appearance={displayAppearance}
-              className="h-[min(62vh,620px)] min-h-[430px] w-full rounded-[2.5rem] border border-white/45 shadow-lift"
-              label={`${activeService.name} on the common configurable avatar`}
-            />
-            <div className="absolute bottom-10 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-white/70 bg-white/80 p-1.5 shadow-soft backdrop-blur">
-              <Button variant="ghost" className="size-10 px-0" onClick={() => setSaveOpen(true)} aria-label="Save current look">
-                <Save size={17} />
-              </Button>
-              <Button variant="ghost" className="size-10 px-0" onClick={() => setSavedOpen(true)} aria-label="Open saved looks">
-                <Layers3 size={17} />
-              </Button>
-              <Button
-                variant="ghost"
-                className="size-10 px-0"
-                onClick={async () => {
-                  await navigator.clipboard?.writeText(window.location.href);
-                  setNotice("Studio link copied. Saved look details remain on this device.");
-                }}
-                aria-label="Copy studio link"
-              >
-                <Share2 size={17} />
-              </Button>
+          <div className="relative mx-auto flex min-h-0 w-full flex-1 items-center justify-center py-3">
+            {/* Portrait frame: height fills available space, width follows 3:4 so full head/hair stays visible */}
+            <div className="relative mx-auto aspect-[3/4] h-full max-h-full w-auto max-w-full">
+              <CommonAvatar
+                appearance={displayAppearance}
+                className="absolute inset-0 h-full w-full rounded-[2.5rem] border border-white/45 shadow-lift"
+                label={`${activeService.name} on the common configurable avatar`}
+              />
+              <div className="pointer-events-none absolute inset-x-0 bottom-4 z-10 flex justify-center">
+                <div className="pointer-events-auto flex items-center gap-1 rounded-full border border-white/70 bg-white/85 p-1.5 shadow-soft backdrop-blur">
+                  <Button variant="ghost" className="size-10 px-0" onClick={() => setSaveOpen(true)} aria-label="Save current look">
+                    <Save size={17} />
+                  </Button>
+                  <Button variant="ghost" className="size-10 px-0" onClick={() => setSavedOpen(true)} aria-label="Open saved looks">
+                    <Layers3 size={17} />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="size-10 px-0"
+                    onClick={async () => {
+                      await navigator.clipboard?.writeText(window.location.href);
+                      setNotice("Studio link copied. Saved look details remain on this device.");
+                    }}
+                    aria-label="Copy studio link"
+                  >
+                    <Share2 size={17} />
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="relative rounded-3xl border border-white/50 bg-white/75 p-3 shadow-soft backdrop-blur">
+          <div className="relative shrink-0 rounded-3xl border border-white/50 bg-white/75 p-3 shadow-soft backdrop-blur">
             <div className="mb-3 flex items-center justify-between gap-3 px-1">
               <div className="text-xs font-bold uppercase tracking-wider text-ink/55">
                 {selectedCategory} references
@@ -843,7 +847,7 @@ export default function StudioPage() {
             </div>
           </div>
 
-          <div className="relative mt-4 flex gap-2 sm:hidden">
+          <div className="relative mt-3 flex shrink-0 gap-2 sm:hidden">
             <Button variant="secondary" className="flex-1" onClick={() => setAssistantOpen(true)}>
               <Bot size={17} />
               Assistant
@@ -854,7 +858,7 @@ export default function StudioPage() {
           </div>
         </section>
 
-        <aside className="no-scrollbar order-3 w-full min-w-0 max-w-full border-t border-charcoal/8 bg-canvas p-5 pb-28 lg:order-none lg:overflow-y-auto lg:border-l lg:border-t-0 lg:pb-5">
+        <aside className="no-scrollbar order-3 w-full min-h-0 min-w-0 max-w-full border-t border-charcoal/8 bg-canvas p-5 pb-28 lg:order-none lg:overflow-y-auto lg:border-l lg:border-t-0 lg:pb-5">
           <ServiceInformation
             service={activeService}
             isSelected={isActiveSelected}

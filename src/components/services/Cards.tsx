@@ -24,7 +24,7 @@ export function CategoryCard({
   const starting = Math.min(...categoryServices.map((service) => service.price));
   return (
     <article className="group overflow-hidden rounded-4xl border border-charcoal/8 bg-white shadow-hairline transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[3/4]">
         <CommonAvatar
           appearance={previewAppearance(previewIndex)}
           className="h-full transition duration-500 group-hover:scale-[1.025]"
@@ -71,7 +71,7 @@ export function ServiceCard({
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-3xl border border-charcoal/8 bg-white shadow-hairline transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-      <div className={cn("relative overflow-hidden", compact ? "aspect-[16/10]" : "aspect-[4/3]")}>
+      <div className={cn("relative overflow-hidden", compact ? "aspect-[4/5]" : "aspect-[3/4]")}>
         <CommonAvatar
           appearance={previewAppearance(service.previewIndex)}
           compact

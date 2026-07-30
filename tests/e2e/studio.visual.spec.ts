@@ -46,7 +46,7 @@ test("representative avatar layers remain aligned", async ({ page }) => {
   await page
     .getByRole("button", { name: "Caramel Balayage", exact: true })
     .click();
-  await page.getByRole("button", { name: "Bridal Gold", exact: true }).click();
+  await page.getByRole("button", { name: "Pearl Pins", exact: true }).click();
   await page.getByLabel("Makeup finish").selectOption("Soft Glam");
 
   await expect(avatar).toHaveScreenshot(

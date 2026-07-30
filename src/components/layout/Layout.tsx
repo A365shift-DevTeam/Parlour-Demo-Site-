@@ -89,9 +89,6 @@ export function Header() {
                 </span>
               )}
             </Link>
-            <Link to="/booking" className={cn(buttonStyles.primary, "px-5")}>
-              Book Appointment
-            </Link>
           </div>
           <button
             type="button"
@@ -129,12 +126,9 @@ export function Header() {
                 </NavLink>
               ))}
             </nav>
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              <Link to="/studio" className={buttonStyles.secondary}>
+            <div className="mt-5">
+              <Link to="/studio" className={cn(buttonStyles.secondary, "w-full")}>
                 Open Studio
-              </Link>
-              <Link to="/booking" className={buttonStyles.primary}>
-                Book Now
               </Link>
             </div>
           </motion.div>
@@ -194,13 +188,17 @@ export function Footer() {
 }
 
 export function Layout() {
+  const location = useLocation();
+  // Studio is a full-viewport workspace — keep chrome out of the way.
+  const hideFooter = location.pathname.startsWith("/studio");
+
   return (
     <div className="min-h-dvh bg-canvas">
       <Header />
       <main id="main-content">
         <Outlet />
       </main>
-      <Footer />
+      {!hideFooter && <Footer />}
     </div>
   );
 }

@@ -39,12 +39,22 @@ const faceLens: Record<FaceShape, { x: number; y: number }> = {
   Diamond: { x: 0.986, y: 1.008 },
 };
 
+/** Full studio framing — slight zoom-out so crown and hair volume stay in frame. */
 const portraitFraming: Record<AvatarHairStyle, { scale: number; y: number }> = {
-  "Natural Layers": { scale: 1.018, y: -3.2 },
-  "Soft Curls": { scale: 1.018, y: -3.2 },
-  "Sleek Bob": { scale: 1.018, y: -3.75 },
-  "Bridal Bun": { scale: 1.028, y: -1.2 },
-  "Textured Crop": { scale: 1.018, y: -4.3 },
+  "Natural Layers": { scale: 0.94, y: 1.2 },
+  "Soft Curls": { scale: 0.92, y: 2.0 },
+  "Sleek Bob": { scale: 0.95, y: 0.8 },
+  "Bridal Bun": { scale: 0.9, y: 3.2 },
+  "Textured Crop": { scale: 0.96, y: 0.4 },
+};
+
+/** Card/list framing: same full-head priority, slightly tighter for smaller frames. */
+const compactPortraitFraming: Record<AvatarHairStyle, { scale: number; y: number }> = {
+  "Natural Layers": { scale: 0.94, y: 1.4 },
+  "Soft Curls": { scale: 0.92, y: 2.2 },
+  "Sleek Bob": { scale: 0.95, y: 1.0 },
+  "Bridal Bun": { scale: 0.9, y: 3.4 },
+  "Textured Crop": { scale: 0.96, y: 0.5 },
 };
 
 const hairMaterials: Record<
@@ -166,97 +176,36 @@ function AccessoryLayer({
   accessory: AvatarAppearance["accessory"];
   position: string;
 }) {
-  if (accessory === "None") return null;
-
-  if (accessory === "Pearl Pins") {
-    return (
-      <motion.svg
-        key={accessory}
-        data-avatar-layer="accessory"
-        initial={{ opacity: 0, scale: 0.94 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.24 }}
-        viewBox="0 0 100 100"
-        className="pointer-events-none absolute inset-0"
-        style={maskStyle("/images/avatars/mask-accessory.png", position)}
-        aria-hidden="true"
-      >
-        <defs>
-          <radialGradient id="pearl-real" cx="34%" cy="28%">
-            <stop offset="0" stopColor="#ffffff" />
-            <stop offset=".45" stopColor="#f4ece4" />
-            <stop offset="1" stopColor="#a68e82" />
-          </radialGradient>
-          <filter id="pearl-real-shadow">
-            <feDropShadow dx=".15" dy=".35" stdDeviation=".28" floodOpacity=".38" />
-          </filter>
-        </defs>
-        <g
-          filter="url(#pearl-real-shadow)"
-          stroke="#9d8272"
-          strokeWidth=".16"
-        >
-          <circle cx="67.6" cy="22.2" r="1.05" fill="url(#pearl-real)" />
-          <circle cx="69.1" cy="24.7" r=".88" fill="url(#pearl-real)" />
-          <circle cx="69.7" cy="27.1" r=".72" fill="url(#pearl-real)" />
-          <circle cx="67.2" cy="28.7" r=".58" fill="url(#pearl-real)" />
-        </g>
-      </motion.svg>
-    );
-  }
+  // Only soft side pins are drawn. Forehead maang tikka ("Bridal Gold") is intentionally omitted.
+  if (accessory !== "Pearl Pins") return null;
 
   return (
     <motion.svg
       key={accessory}
       data-avatar-layer="accessory"
-      initial={{ opacity: 0, y: -3 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.25 }}
+      initial={{ opacity: 0, scale: 0.94 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.24 }}
       viewBox="0 0 100 100"
       className="pointer-events-none absolute inset-0"
-      style={{
-        ...maskStyle("/images/avatars/mask-accessory.png", position),
-        transform: "scale(.72) translateY(2.5%)",
-        transformOrigin: "50% 12%",
-      }}
+      style={maskStyle("/images/avatars/mask-accessory.png", position)}
       aria-hidden="true"
     >
       <defs>
-        <linearGradient id="gold-real" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#fff0ae" />
-          <stop offset=".4" stopColor="#d3a13d" />
-          <stop offset="1" stopColor="#71451b" />
-        </linearGradient>
-        <radialGradient id="ruby-real" cx="35%" cy="28%">
-          <stop offset="0" stopColor="#eaa3ae" />
-          <stop offset=".48" stopColor="#9e2947" />
-          <stop offset="1" stopColor="#4f1727" />
+        <radialGradient id="pearl-real" cx="34%" cy="28%">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset=".45" stopColor="#f4ece4" />
+          <stop offset="1" stopColor="#a68e82" />
         </radialGradient>
-        <filter id="gold-real-shadow">
-          <feDropShadow dx="0" dy=".38" stdDeviation=".35" floodOpacity=".4" />
+        <filter id="pearl-real-shadow">
+          <feDropShadow dx=".15" dy=".35" stdDeviation=".28" floodOpacity=".38" />
         </filter>
       </defs>
-      <g filter="url(#gold-real-shadow)">
-        <path
-          d="M50 10 C49.6 14.5 49.7 18.7 50 22.6"
-          fill="none"
-          stroke="url(#gold-real)"
-          strokeWidth=".58"
-        />
-        {[12.5, 15.5, 18.5, 21.3].map((y) => (
-          <circle key={y} cx="50" cy={y} r=".5" fill="url(#gold-real)" />
-        ))}
-        <path
-          d="M50 22.3 C47.8 24.2 48.1 27.3 50 29 C51.9 27.3 52.2 24.2 50 22.3Z"
-          fill="url(#gold-real)"
-          stroke="#74461c"
-          strokeWidth=".2"
-        />
-        <circle cx="50" cy="25.5" r=".9" fill="url(#ruby-real)" />
-        <path
-          d="M50 29 C49.1 30 49.2 31.5 50 32.2 C50.8 31.5 50.9 30 50 29Z"
-          fill="url(#gold-real)"
-        />
+      <g filter="url(#pearl-real-shadow)" stroke="#9d8272" strokeWidth=".16">
+        <circle cx="67.6" cy="22.2" r="1.05" fill="url(#pearl-real)" />
+        <circle cx="69.1" cy="24.7" r=".88" fill="url(#pearl-real)" />
+        <circle cx="69.7" cy="27.1" r=".72" fill="url(#pearl-real)" />
+        <circle cx="67.2" cy="28.7" r=".58" fill="url(#pearl-real)" />
       </g>
     </motion.svg>
   );
@@ -307,17 +256,22 @@ interface CommonAvatarProps {
   className?: string;
   label?: string;
   compact?: boolean;
+  style?: CSSProperties;
 }
 
 export function CommonAvatar({
   appearance,
   className,
   label = "Curated common salon avatar preview",
+  compact = false,
+  style,
 }: CommonAvatarProps) {
   const reducedMotion = useReducedMotion();
   const position = avatarSkinPositions[appearance.skinTone];
   const portrait = avatarStyleSheets[appearance.hairStyle];
-  const framing = portraitFraming[appearance.hairStyle];
+  const framing = compact
+    ? compactPortraitFraming[appearance.hairStyle]
+    : portraitFraming[appearance.hairStyle];
   const portraitTransform = `translateY(${framing.y}%) scale(${framing.scale})`;
   const material = hairMaterials[appearance.hairColor];
   const lens = faceLens[appearance.faceShape];
@@ -328,7 +282,7 @@ export function CommonAvatar({
         "relative isolate overflow-hidden bg-gradient-to-b from-[#eaded8] via-[#e7d8d3] to-[#cdb9b7]",
         className,
       )}
-      style={{ containerType: "size" } as CSSProperties}
+      style={{ containerType: "size", ...style } as CSSProperties}
       data-testid="common-avatar"
       role="img"
       aria-label={`${label}. ${appearance.skinTone} skin tone, ${appearance.faceShape.toLowerCase()} face, ${appearance.hairStyle.toLowerCase()}, ${appearance.hairColor.toLowerCase()} hair, ${appearance.makeup.toLowerCase()} finish, ${appearance.accessory.toLowerCase()} accessory.`}
@@ -336,6 +290,7 @@ export function CommonAvatar({
       <div
         className="absolute left-1/2 top-1/2 aspect-square -translate-x-1/2 -translate-y-1/2 overflow-hidden"
         style={{
+          // Cover the frame while keeping the full photographic head in view for portrait cards.
           width: "max(100cqw, 100cqh)",
           height: "max(100cqw, 100cqh)",
         }}
@@ -421,5 +376,5 @@ export const avatarOptionSets = {
   hairColor: ["Espresso", "Chocolate", "Caramel Balayage", "Burgundy"],
   makeup: ["Bare", "Natural Glow", "Soft Glam", "Bridal"],
   facialHair: ["None", "Stubble", "Sculpted Beard"],
-  accessory: ["None", "Pearl Pins", "Bridal Gold"],
+  accessory: ["None", "Pearl Pins"],
 } satisfies Record<keyof AvatarAppearance, readonly string[]>;

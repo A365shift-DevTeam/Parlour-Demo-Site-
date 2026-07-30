@@ -51,7 +51,7 @@ export const previewAppearance = (
       hairColor: "Espresso",
       makeup: "Bridal",
       facialHair: "None",
-      accessory: "Bridal Gold",
+      accessory: "None",
     },
     {
       skinTone,
