@@ -27,7 +27,7 @@ export function SpecialistsPage() {
       <section className="bg-ivory py-20 sm:py-28">
         <div className="section-shell grid items-end gap-8 lg:grid-cols-[1fr_.65fr]">
           <SectionHeading
-            eyebrow="The Aurelia artists"
+            eyebrow="The GV Studio artists"
             title="Expertise with a listening ear."
             description="Explore each specialist’s focus, experience, services and next mock availability, then choose them during booking."
           />
@@ -124,7 +124,7 @@ export function AboutPage() {
       <section className="relative min-h-[660px] overflow-hidden bg-ivory">
         <img
           src="/images/aurelia-hero.png"
-          alt="Fictional model in Aurelia's warm ivory salon setting"
+          alt="Fictional model in GV Studio's warm ivory salon setting"
           width="1536"
           height="1024"
           className="absolute inset-0 h-full w-full object-cover object-[70%_center]"
@@ -132,12 +132,12 @@ export function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-ivory via-ivory/90 to-transparent" />
         <div className="section-shell relative flex min-h-[660px] items-center">
           <div className="max-w-2xl">
-            <Eyebrow>About Aurelia</Eyebrow>
+            <Eyebrow>About GV Studio</Eyebrow>
             <h1 className="font-display text-6xl font-semibold leading-[0.86] sm:text-8xl">
               Beauty planning with more clarity and less pressure.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-ink/75">
-              Aurelia pairs premium salon craft with a carefully bounded digital studio. Customers
+              GV Studio pairs premium salon craft with a carefully bounded digital studio. Customers
               explore fixed references, understand services and book without surrendering a personal image.
             </p>
           </div>
@@ -179,7 +179,7 @@ export function AboutPage() {
               <SpritePortrait
                 key={specialist.id}
                 index={specialist.spriteIndex}
-                alt={`Aurelia specialist ${specialist.name}`}
+                alt={`GV Studio specialist ${specialist.name}`}
                 className="aspect-square rounded-3xl"
               />
             ))}
@@ -211,7 +211,7 @@ export function ContactPage() {
           <SectionHeading
             eyebrow="Contact & branches"
             title="Let’s make the next step easy."
-            description="Ask about a service, check package suitability or contact your preferred Aurelia branch."
+            description="Ask about a service, check package suitability or contact your preferred GV Studio branch."
           />
         </div>
       </section>

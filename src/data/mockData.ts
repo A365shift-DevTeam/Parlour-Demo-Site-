@@ -505,7 +505,7 @@ const serviceSeeds: ServiceSeed[] = [
   },
 ];
 
-const defaultProducts = ["Kérastase care", "Aurelia finishing serum", "Professional heat protection"];
+const defaultProducts = ["Kérastase care", "GV Studio finishing serum", "Professional heat protection"];
 const defaultPrep = "Arrive with clean, dry hair unless your confirmation notes otherwise.";
 const defaultAftercare =
   "Your specialist will recommend a tailored home-care routine after assessing your hair or skin.";
@@ -708,7 +708,7 @@ export const specialists: Specialist[] = [
 export const branches: Branch[] = [
   {
     id: "branch-1",
-    name: "Aurelia Lavelle Road",
+    name: "GV Studio Lavelle Road",
     address: "18, Lavelle Road, Bengaluru",
     distance: "Central Bengaluru",
     phone: "+91 98765 43210",
@@ -716,7 +716,7 @@ export const branches: Branch[] = [
   },
   {
     id: "branch-2",
-    name: "Aurelia Indiranagar",
+    name: "GV Studio Indiranagar",
     address: "746, 12th Main, Indiranagar, Bengaluru",
     distance: "East Bengaluru",
     phone: "+91 98765 43211",
@@ -724,7 +724,7 @@ export const branches: Branch[] = [
   },
   {
     id: "branch-3",
-    name: "Aurelia Whitefield",
+    name: "GV Studio Whitefield",
     address: "52, ECC Road, Whitefield, Bengaluru",
     distance: "Whitefield",
     phone: "+91 98765 43212",
@@ -811,7 +811,7 @@ export const faqs: FAQ[] = [
     id: "faq-1",
     question: "Are the avatars based on customer photographs?",
     answer:
-      "No. Every avatar is a professionally designed, predefined static reference. Aurelia does not ask for or process a customer face or photograph.",
+      "No. Every avatar is a professionally designed, predefined static reference. GV Studio does not ask for or process a customer face or photograph.",
   },
   {
     id: "faq-2",

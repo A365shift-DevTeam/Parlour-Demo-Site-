@@ -53,7 +53,7 @@ const journey = [
   {
     number: "04",
     title: "Book the Appointment",
-    description: "Send the exact saved look and service list to your chosen Aurelia team.",
+    description: "Send the exact saved look and service list to your chosen GV Studio team.",
     icon: CalendarCheck,
   },
 ];
@@ -151,7 +151,7 @@ export default function HomePage() {
       <section className="bg-canvas py-20 sm:py-28">
         <div className="section-shell">
           <SectionHeading
-            eyebrow="The Aurelia studios"
+            eyebrow="The GV Studio branches"
             title="Every service, considered."
             description="Start with a category, view curated states on the common avatar and arrive at your appointment knowing what to discuss."
           />

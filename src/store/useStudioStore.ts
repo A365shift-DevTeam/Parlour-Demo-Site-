@@ -125,7 +125,7 @@ export const useStudioStore = create<StudioStore>()(
         const now = new Date().toISOString();
         const look: SavedStudioLook = {
           id: `look-${Date.now()}`,
-          name: name?.trim() || `My Aurelia Look ${state.savedLooks.length + 1}`,
+          name: name?.trim() || `My GV Studio Look ${state.savedLooks.length + 1}`,
           avatarId: "common-avatar",
           appearance: state.appearance,
           serviceIds: state.selectedServiceIds,
@@ -188,7 +188,7 @@ export const useStudioStore = create<StudioStore>()(
       setNotice: (notice) => set({ notice }),
     }),
     {
-      name: "aurelia-studio",
+      name: "gv-studio",
       partialize: (state) => ({
         appearance: state.appearance,
         selectedCategory: state.selectedCategory,

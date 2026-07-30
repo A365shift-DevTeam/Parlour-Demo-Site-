@@ -960,7 +960,7 @@ export default function StudioPage() {
           id="look-name"
           value={lookName}
           onChange={(event) => setLookName(event.target.value)}
-          placeholder={`My Aurelia Look ${savedLooks.length + 1}`}
+          placeholder={`My GV Studio Look ${savedLooks.length + 1}`}
           className="mt-2 min-h-12 w-full rounded-2xl border border-charcoal/12 bg-white px-4 text-base"
         />
         <div className="mt-6 flex justify-end gap-2">
